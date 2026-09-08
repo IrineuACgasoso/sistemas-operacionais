@@ -1,5 +1,7 @@
+// Compilação: gcc -O2 q3.c -o q3 -pthread | Execução: ./q3 <N_leitoras> <M_escritoras> [segundos]
 #define _POSIX_C_SOURCE 200809L
 #define _DEFAULT_SOURCE
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>

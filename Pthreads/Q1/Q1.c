@@ -1,3 +1,4 @@
+// Compilação: gcc -O2 q1.c -o q1 -pthread | Execução: ./q1
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -7,7 +8,7 @@
 #define N_THREADS 10
 #define PARTITION (N_ELEMENTOS / N_THREADS)
 
-// Struct para enviar todos os dados necessários para a cada Thread
+// Struct para enviar todos os dados necessários para cada thread
 typedef struct {
     int id;
     int front;
@@ -16,12 +17,12 @@ typedef struct {
     int *partition;
 }ThreadData;
 
-// Soma executada por cada Thread
+// Soma executada por thread
 void *SomadorParcial(void *agr){
     // Desempacota todos os dados respectivos à essa thread
     ThreadData *data = (ThreadData*)agr;
     
-    // Somador
+    // Somador (enquanto o índice atual não for maior que o índice final)
     while (data->front < data->back) {
         data->soma += data->partition[data->front];
         data->front++;
@@ -56,7 +57,7 @@ int main (int argc, char *argv[]){
 
     // Criação das Threads
     for (int i = 0; i < N_THREADS; i++) {
-        // Salva os dados de cada Thread
+        // Salva os dados de cada Thread na struct
         dados_threads[i].id = i;
         dados_threads[i].front = i * PARTITION;
         dados_threads[i].back = (i + 1) * PARTITION;
