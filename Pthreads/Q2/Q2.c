@@ -5,6 +5,7 @@
 
 #define NUM_LINES 7
 
+// Cores de exibição
 const char *colors[NUM_LINES] = { 
     "\033[40;37m", // Linha 1: Preto
     "\033[41;37m", // Linha 2: Vermelho
@@ -21,6 +22,7 @@ const char *colors[NUM_LINES] = {
 
 
 pthread_mutex_t mutex_lines[NUM_LINES];
+// Mutex de controle para quem pode alterar a tela
 pthread_mutex_t screen_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 
@@ -32,6 +34,7 @@ typedef struct
 
 void *ProcessFile(void *arg) 
 {
+    // Desempacota a struct
     ThreadData *data = (ThreadData *)arg;
 
     FILE *file = fopen(data->filename, "r");

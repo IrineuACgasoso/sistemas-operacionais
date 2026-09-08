@@ -76,6 +76,7 @@ int main (int argc, char *argv[]){
         pthread_join(threads[p], NULL);
     }
 
+    // Incrementa a soma final com suas parciais
     for (int u = 0; u < N_THREADS; u++) {
         soma_final += dados_threads[u].soma;
     }
